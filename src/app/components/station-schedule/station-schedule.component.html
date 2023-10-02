@@ -1,0 +1,9 @@
+<div>
+  <div class="container">
+    <select [(ngModel)]="seleccion">
+      <option value="" disabled selected>Select a station:</option>
+      <option *ngFor="let item of listStation" [value]="item.name"> {{ item.name }}</option>
+    </select>
+    <button class="btn btn-success">Search</button>
+  </div>
+</div>
