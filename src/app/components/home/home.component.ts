@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
 import {Router} from "@angular/router";
+import {RegistredUser} from "../../interfaces/RegistredUser";
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,19 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit{
 
+  newUser: RegistredUser = {
+    username : "",
+    password: "",
+    dateOfBirth: "",
+    name: "",
+    surname: "",
+  };
+
   username: string | undefined;
   password: string | undefined;
+  repeatPassword: string | undefined;
+  registredMode: boolean = false;
+
 
   constructor(private data : DataService,
               private route : Router) { }
@@ -21,13 +33,30 @@ export class HomeComponent implements OnInit{
 
     this.data.login(this.username!, this.password!).subscribe( request => {
 
-      const role : boolean = request.employe;
+      const role : boolean = request.passenger.employe;
+
+      if(request.token != null) {
+
+        localStorage.setItem("token", request.token);
+        localStorage.setItem("id", request.passenger.id);
+
+      }
 
       if(role != null){
 
-        if(!role){  this.route.navigate(['/user']); }
+        localStorage.setItem("loggin", "ok");
 
-        else{ this.route.navigate(['/employe']); }
+        if(!role){
+
+          localStorage.setItem("role", "user");
+          this.route.navigate(['/user']);
+
+        }else{
+
+          localStorage.setItem("role", "employe");
+          this.route.navigate(['/employe']);
+
+        }
 
       }
 
@@ -40,7 +69,20 @@ export class HomeComponent implements OnInit{
         }
       });
   }
+  registred(){
 
+    console.log(this.newUser);
+
+  }
+  setRegistredMode(action : boolean){
+
+    if(action){
+      this.registredMode = true;
+    }else{
+      this.registredMode = false;
+    }
+
+  }
 
 
 }

@@ -1,7 +1,10 @@
 <div>
+  <br><br>
   <div class="container">
+    <h1>Menu</h1>
     <button class="btn btn-primary" routerLink="/stationSchedule">Station Schedule</button>
-    <button class="btn btn-warning">Search Train</button>
-    <button class="btn btn-success">Buy Ticket</button>
+    <button class="btn btn-success" routerLink="/searchTrain">Search Train</button>
+    <button class="btn btn-warning" routerLink="/buyTicket">Buy Ticket</button>
+    <button class="btn btn-danger" (click)="closeSession()">Close Session</button>
   </div>
 </div>

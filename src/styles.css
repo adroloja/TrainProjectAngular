@@ -11,3 +11,28 @@ button{
   width: 150px;
   margin: 4px;
 }
+
+.custom-table {
+  border-collapse: collapse;
+  width: 300px;
+}
+
+.custom-table th, .custom-table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+input{
+  margin: 4px;
+  border-radius: 4px;
+}
+
+body{
+  background-color: cadetblue;
+}
+
+select{
+  height: 40px;
+  width: 180px;
+}

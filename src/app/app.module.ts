@@ -9,6 +9,8 @@ import { EmployeComponent } from './components/employe/employe.component';
 import { StationScheduleComponent } from './components/station-schedule/station-schedule.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { SearchTrainComponent } from './components/search-train/search-train.component';
+import { BuyTicketComponent } from './components/buy-ticket/buy-ticket.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {HttpClientModule} from "@angular/common/http";
     HomeComponent,
     UserComponent,
     EmployeComponent,
-    StationScheduleComponent
+    StationScheduleComponent,
+    SearchTrainComponent,
+    BuyTicketComponent
   ],
   imports: [
     BrowserModule,

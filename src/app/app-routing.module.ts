@@ -4,6 +4,11 @@ import {HomeComponent} from "./components/home/home.component";
 import {UserComponent} from "./components/user/user.component";
 import {EmployeComponent} from "./components/employe/employe.component";
 import {StationScheduleComponent} from "./components/station-schedule/station-schedule.component";
+import {loginGuard} from "./guard/login.guard";
+import {employeGuard} from "./guard/employe.guard";
+import {userGuard} from "./guard/user.guard";
+import {SearchTrainComponent} from "./components/search-train/search-train.component";
+import {BuyTicketComponent} from "./components/buy-ticket/buy-ticket.component";
 
 const routes: Routes = [
 
@@ -11,15 +16,23 @@ const routes: Routes = [
     path: "", component: HomeComponent
   },
   {
-    path: "user", component: UserComponent
+    path: "user", component: UserComponent, canActivate: [loginGuard, userGuard]
   },
   {
-    path: "employe", component: EmployeComponent
+    path: "employe", component: EmployeComponent, canActivate: [loginGuard, employeGuard]
   },
   {
-    path: "stationSchedule", component: StationScheduleComponent
+    path: "stationSchedule", component: StationScheduleComponent, canActivate: [loginGuard, userGuard]
+  },
+  {
+    path: "searchTrain", component: SearchTrainComponent, canActivate: [loginGuard, userGuard]
+  },
+  {
+    path: "buyTicket", component: BuyTicketComponent, canActivate: [loginGuard, userGuard]
+  },
+  {
+    path: '**', redirectTo: "",
   }
-
 ];
 
 @NgModule({

@@ -1,13 +1,51 @@
 <div>
+  <br><br>
+
   <div class="container">
+
+    <div *ngIf="!this.registredMode">
       <div>
         <input type="text" placeholder="Username" [(ngModel)]="username">
       </div>
-    <div>
-      <input type="password" placeholder="Password" [(ngModel)]="password">
+      <div>
+        <input type="password" placeholder="Password" [(ngModel)]="password">
+      </div>
+      <div style="display: flex; flex-direction: row; align-items: center; margin-top: 4px">
+        <input class="btn btn-success" type="submit" value="Sing up" (click)="this.setRegistredMode(true)" style="margin-right: 4px">
+        <input class="btn btn-primary" type="submit" value="Login" (click)="login()">
+      </div>
     </div>
-     <div>
-       <input type="submit" value="Login" (click)="login()">
-     </div>
+    <div *ngIf="registredMode">
+      <div>
+        <input type="text" placeholder="Username" [(ngModel)]="newUser.username">
+      </div>
+      <div>
+        <input type="password" placeholder="Password" [(ngModel)]="newUser.password">
+      </div>
+      <div>
+        <input type="password" placeholder="Repeat Password" [(ngModel)]="repeatPassword">
+      </div>
+      <br>
+      <div>
+        <h3>Personal data:</h3>
+      </div>
+      <br>
+      <div>
+        <input type="text" placeholder="Name" [(ngModel)]="newUser.name">
+      </div>
+      <div>
+        <input type="text" placeholder="Surname" [(ngModel)]="newUser.surname">
+      </div>
+      <div>
+        <input type="date" [(ngModel)]="newUser.dateOfBirth" name="fechaNacimiento" />
+      </div>
+      <br>
+      <div style="display: flex; flex-direction: row; align-items: center; margin-top: 4px">
+        <input class="btn btn-success" type="submit" value="Back" (click)="this.setRegistredMode(false)" style="margin-right: 4px">
+        <input class="btn btn-primary" type="submit" value="Sing up" (click)="registred()">
+      </div>
+    </div>
+    </div>
+
   </div>
-</div>
+

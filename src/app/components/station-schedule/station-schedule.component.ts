@@ -9,7 +9,9 @@ import {DataService} from "../../services/data.service";
 export class StationScheduleComponent implements OnInit{
 
   listStation: any[] = [];
-  seleccion: string = '';
+  selection: string = '';
+
+  resultQuery: any[] = [];
 
   constructor( private data : DataService) {  }
   ngOnInit(): void {
@@ -19,5 +21,27 @@ export class StationScheduleComponent implements OnInit{
       this.listStation = result;
     })
   }
+
+  getStationTrainSchedule(){
+
+    this.data.getTrainsScheudleFromOneStation(this.selection).subscribe(result => {
+
+      console.log(result);
+
+      this.resultQuery = result;
+
+      this.resultQuery.forEach(n => {
+
+
+
+      })
+
+    }, error =>
+    {
+      alert(error.error);
+
+    });
+  }
+
 
 }
