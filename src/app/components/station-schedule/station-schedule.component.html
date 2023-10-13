@@ -18,15 +18,11 @@
           Time
         </th>
         <th>
-          Seats available
-        </th>
-        <th>
           Train
         </th>
       </tr>
       <tr *ngFor="let schedule of resultQuery">
         <td>{{ schedule.time }}</td>
-        <td>{{ schedule.e }}</td>
         <td>{{ schedule.trainStops.number }}</td>
       </tr>
     </table>
