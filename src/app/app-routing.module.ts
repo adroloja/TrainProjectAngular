@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
-import {UserComponent} from "./components/user/user.component";
 import {EmployeComponent} from "./components/employe/employe.component";
 import {StationScheduleComponent} from "./components/station-schedule/station-schedule.component";
 import {loginGuard} from "./guard/login.guard";
@@ -9,6 +8,7 @@ import {employeGuard} from "./guard/employe.guard";
 import {userGuard} from "./guard/user.guard";
 import {SearchTrainComponent} from "./components/search-train/search-train.component";
 import {BuyTicketComponent} from "./components/buy-ticket/buy-ticket.component";
+import {LoginComponent} from "./components/login/login.component";
 
 const routes: Routes = [
 
@@ -16,7 +16,7 @@ const routes: Routes = [
     path: "", component: HomeComponent
   },
   {
-    path: "user", component: UserComponent, canActivate: [loginGuard, userGuard]
+    path: "login", component: LoginComponent
   },
   {
     path: "employe", component: EmployeComponent, canActivate: [loginGuard, employeGuard]
@@ -25,10 +25,13 @@ const routes: Routes = [
     path: "stationSchedule", component: StationScheduleComponent, canActivate: [loginGuard, userGuard]
   },
   {
-    path: "searchTrain", component: SearchTrainComponent, canActivate: [loginGuard, userGuard]
+    path: "searchTrain", component: SearchTrainComponent, // canActivate: [loginGuard, userGuard]
   },
   {
     path: "buyTicket", component: BuyTicketComponent, canActivate: [loginGuard, userGuard]
+  },
+  {
+    path: "buyTicket/:param", component: BuyTicketComponent, canActivate: [loginGuard, userGuard]
   },
   {
     path: '**', redirectTo: "",

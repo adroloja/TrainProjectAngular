@@ -1,0 +1,51 @@
+.modalCss{
+    background-color: rgba(245, 245, 245, 0.8);
+    border-radius: 12px;
+    padding: 60px;
+    min-width: fit-content;
+
+}
+
+select{
+  height: 50px;
+  width: 230px;
+}
+
+.modalCssReg{
+  background-color: rgba(245, 245, 245, 0.8);
+  border-radius: 12px;
+  padding: 60px;
+  min-width: fit-content;
+  margin-top: 10%;
+
+}
+
+.centrado{
+  display: flex;
+  justify-content: center;
+  align-items: center
+
+}
+input{
+
+height: 50px;
+}
+
+.botonLogin{
+
+  margin: 5px;
+  width: 100%;
+  height: 45px;
+}
+
+.centradoAbsolute {
+  position: absolute;
+  top: 66%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(250,250,250);
+  width: 45%;
+  border-radius: 12px;
+  height: auto;
+}
+

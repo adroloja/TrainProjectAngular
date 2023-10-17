@@ -1,10 +1,21 @@
-<div>
-  <br><br>
-  <div class="container">
-    <h1>Menu</h1>
-    <button class="btn btn-primary" routerLink="/stationSchedule">Add new Station</button>
-    <button class="btn btn-success" routerLink="/searchTrain">Add new Train</button>
-    <button class="btn btn-warning" routerLink="/buyTicket">View all train</button>
-    <button class="btn btn-danger" (click)="closeSession()">Close Session</button>
+<div style="display: flex; flex-direction: row;  width: 100%; height: 100%">
+  <div style="width: 20%">
+    <div>
+      <app-menu-admin style="width: 100%; " (adminMenu)="getSelectMenu($event)" ></app-menu-admin>
+    </div>
   </div>
+  <div style="background-color:white; width: 100%">
+    <br><br>
+      <h1 class="h2">{{ this.menu }}</h1>
+    <hr>
+    <div>
+      <app-dash *ngIf="this.menu == 'Dashboard'"></app-dash>
+      <app-station *ngIf="this.menu == 'Station'"></app-station>
+      <app-stops *ngIf="this.menu == 'Stops'"></app-stops>
+      <app-train *ngIf="this.menu == 'Train'"></app-train>
+      <app-ticket *ngIf="this.menu == 'Ticket'"></app-ticket>
+      <app-passenger *ngIf="this.menu == 'Passenger'"></app-passenger>
+    </div>
+  </div>
+
 </div>

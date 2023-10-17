@@ -7,8 +7,10 @@ import { Component } from '@angular/core';
 })
 export class EmployeComponent {
 
+  menu : string = "Dashboard";
 
-  closeSession(){
-
+  getSelectMenu(menu : string){
+    console.log(menu);
+    this.menu = menu;
   }
 }

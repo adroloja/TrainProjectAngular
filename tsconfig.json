@@ -14,6 +14,7 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,       // this one i have added
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",

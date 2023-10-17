@@ -1,21 +1,100 @@
+<div class="gradiente" style="width: 100%; height: 105px">
+  <div  style="width: 100%; height: auto; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+    <div style="position: absolute; width: 47%; margin-top: 13%; height: 70px; border-radius: 15px;   background-color: white">
 <div>
-  <br><br>
-
-  <div class="container">
-
-    <div *ngIf="!this.registredMode">
-      <div>
-        <input type="text" placeholder="Username" [(ngModel)]="username">
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <form class="d-flex" >
+        <span style="margin-top: 12px; margin-right: 20px; margin-left: 10px; font-size: large;">From</span>
+        <div>
+          <select [(ngModel)]="stationA" [ngModelOptions]="{standalone: true}">
+            <option value="" disabled selected>Select station A:</option>
+            <option *ngFor="let item of listStation" [value]="item.name"> {{ item.name }}</option>
+          </select>
+        </div>
+        <div style="width: 30px"></div>
+        <span style="margin-top: 12px; font-size: large; margin-right: 10px">&nbsp;To&nbsp;</span>
+        <div>
+          <select [(ngModel)]="stationB" [ngModelOptions]="{standalone: true}">
+            <option value="" disabled selected>Select station B:</option>
+            <option *ngFor="let item of listStation" [value]="item.name"> {{ item.name }}</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </nav>
+</div>
+  <div style="display: flex; justify-content: center; ">
+    <nav class="navbar navbar-light bg-light" style="width: 100%">
+      <div class="container-fluid">
+        <form class="d-flex">
+          <span style="margin-top: 12px; margin-right: 10px; font-size: large;">Time</span>
+          <div>
+            <input type="datetime-local" id="startDateTime" [(ngModel)]="startDateTime" name="startDateTime" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div style="width: 15%;"></div>
+          <span style="margin-top: 12px; margin-right: 10px; font-size: large;">Time</span>
+          <div>
+            <input type="datetime-local" id="endDateTime" [(ngModel)]="endDateTime" name="endDateTime" [ngModelOptions]="{standalone: true}">
+          </div>
+          <button class="btn btn-secondary" type="submit" (click)="search()">Search</button>
+        </form>
       </div>
-      <div>
-        <input type="password" placeholder="Password" [(ngModel)]="password">
-      </div>
-      <div style="display: flex; flex-direction: row; align-items: center; margin-top: 4px">
-        <input class="btn btn-success" type="submit" value="Sing up" (click)="this.setRegistredMode(true)" style="margin-right: 4px">
-        <input class="btn btn-primary" type="submit" value="Login" (click)="login()">
+    </nav>
+  </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="centradoAbsolute bg-ligh"  *ngIf="busqueda">
+  <div class="card" *ngFor="let schedule of resultQuery" style="margin: 4px">
+    <div class="card-header">Station: <strong>{{ schedule.stationStop.name}}</strong> </div>
+    <div class="card-body">
+      <div style="display:flex; flex-direction: row;justify-content: space-between">
+        <div>
+          <div>Time: </div>
+          <div>{{ schedule.time }}</div>
+        </div>
+        <div>
+          <div>Train:</div>
+          <div>{{ schedule.trainStops.number }}</div>
+        </div>
+        <div>
+          <button class="btn btn-outline-secondary" (click)="goToBuyTicket(schedule.stationStop.name)">Buy ticket</button>
+        </div>
       </div>
     </div>
-    <div *ngIf="registredMode">
+  </div>
+</div>
+
+<div style="width: 100%; display: flex; align-items: center; justify-content: center">
+<div class="modalCss" style="width: 15%; position: absolute; top: 43%; height: auto" *ngIf="this.loginS.openModal">
+  <div style="display: flex; flex-direction: column; justify-content: center">
+    <div style="display: flex;align-items: center; justify-content: center">
+      <h3>Login</h3>
+    </div>
+
+    <div class="centrado">
+      <input type="text" placeholder="Username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="centrado">
+      <input type="password" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" >
+    </div>
+    <div class="modal-footer">
+      <button  type="button" class="btn btn-primary botonLogin" (click)="login()">Login</button>
+    </div>
+    <div class="centrado">
+      <a (click)="this.loginS.loginModalClose()" style="cursor: pointer">Close</a>
+    </div>
+  </div>
+</div>
+  <div class="modalCssReg"  *ngIf="this.loginS.openModelReg && !this.loginS.openModal">
+    <div>
+      <div>
+        <h3>Sing up</h3>
+      </div>
+
       <div>
         <input type="text" placeholder="Username" [(ngModel)]="newUser.username">
       </div>
@@ -39,13 +118,13 @@
       <div>
         <input type="date" [(ngModel)]="newUser.dateOfBirth" name="fechaNacimiento" />
       </div>
-      <br>
-      <div style="display: flex; flex-direction: row; align-items: center; margin-top: 4px">
-        <input class="btn btn-success" type="submit" value="Back" (click)="this.setRegistredMode(false)" style="margin-right: 4px">
-        <input class="btn btn-primary" type="submit" value="Sing up" (click)="registred()">
+      <div class="modal-footer">
+        <button  type="button" class="btn btn-primary botonLogin" (click)="registred()">Sing up</button>
+      </div>
+      <div class="centrado">
+        <a (click)="this.loginS.regModalClose()" >Close</a>
       </div>
     </div>
-    </div>
-
   </div>
+</div>
 
