@@ -46,28 +46,30 @@
 
   </div>
 </div>
+<div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
 
-<div class="centradoAbsolute bg-ligh"  *ngIf="busqueda">
-  <div class="card" *ngFor="let schedule of resultQuery" style="margin: 4px">
-    <div class="card-header">Station: <strong>{{ schedule.stationStop.name}}</strong> </div>
-    <div class="card-body">
-      <div style="display:flex; flex-direction: row;justify-content: space-between">
-        <div>
-          <div>Time: </div>
-          <div>{{ schedule.time }}</div>
-        </div>
-        <div>
-          <div>Train:</div>
-          <div>{{ schedule.trainStops.number }}</div>
-        </div>
-        <div>
-          <button class="btn btn-outline-secondary" (click)="goToBuyTicket(schedule.stationStop.name)">Buy ticket</button>
+  <div class="centradoAbsolute bg-ligh"  *ngIf="busqueda">
+    <div class="card" *ngFor="let schedule of resultQuery" style="margin: 4px">
+      <div class="card-header">Station: <strong>{{ schedule.stationStop.name}}</strong> </div>
+      <div class="card-body">
+        <div style="display:flex; flex-direction: row;justify-content: space-between">
+          <div>
+            <div>Time: </div>
+            <div>{{ schedule.time }}</div>
+          </div>
+          <div>
+            <div>Train:</div>
+            <div>{{ schedule.trainStops.number }}</div>
+          </div>
+          <div>
+            <button class="btn btn-outline-secondary" (click)="goToBuyTicket(schedule.stationStop.name)">Buy ticket</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+</div>
 <div style="width: 100%; display: flex; align-items: center; justify-content: center">
 <div class="modalCss" style="width: 15%; position: absolute; top: 43%; height: auto" *ngIf="this.loginS.openModal">
   <div style="display: flex; flex-direction: column; justify-content: center">
