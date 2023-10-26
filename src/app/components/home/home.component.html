@@ -7,7 +7,7 @@
       <form class="d-flex" >
         <span style="margin-top: 12px; margin-right: 20px; margin-left: 10px; font-size: large;">From</span>
         <div>
-          <select [(ngModel)]="stationA" [ngModelOptions]="{standalone: true}">
+          <select [(ngModel)]="stationA" [ngModelOptions]="{standalone: true}" [style.border-color]="borderColorFrom">
             <option value="" disabled selected>Select station A:</option>
             <option *ngFor="let item of listStation" [value]="item.name"> {{ item.name }}</option>
           </select>
@@ -15,7 +15,7 @@
         <div style="width: 30px"></div>
         <span style="margin-top: 12px; font-size: large; margin-right: 10px">&nbsp;To&nbsp;</span>
         <div>
-          <select [(ngModel)]="stationB" [ngModelOptions]="{standalone: true}">
+          <select [(ngModel)]="stationB" [ngModelOptions]="{standalone: true}" [style.border-color]="borderColorTo">
             <option value="" disabled selected>Select station B:</option>
             <option *ngFor="let item of listStation" [value]="item.name"> {{ item.name }}</option>
           </select>
@@ -30,14 +30,14 @@
         <form class="d-flex">
           <span style="margin-top: 12px; margin-right: 10px; font-size: large;">Time</span>
           <div>
-            <input type="datetime-local" id="startDateTime" [(ngModel)]="startDateTime" name="startDateTime" [ngModelOptions]="{standalone: true}">
+            <input type="datetime-local" id="startDateTime" [(ngModel)]="startDateTime" name="startDateTime" [ngModelOptions]="{standalone: true}" [style.border-color]="borderColorTimeA">
           </div>
           <div style="width: 15%;"></div>
           <span style="margin-top: 12px; margin-right: 10px; font-size: large;">Time</span>
           <div>
-            <input type="datetime-local" id="endDateTime" [(ngModel)]="endDateTime" name="endDateTime" [ngModelOptions]="{standalone: true}">
+            <input type="datetime-local" id="endDateTime" [(ngModel)]="endDateTime" name="endDateTime" [ngModelOptions]="{standalone: true}"  [style.border-color]="borderColorTimeB">
           </div>
-          <button class="btn btn-secondary" type="submit" (click)="search()">Search</button>
+          <button class="btn btn-primary" type="submit" (click)="search()" [disabled]="stationA == '' || stationB == '' || startDateTime == '' || endDateTime == ''">Search</button>
         </form>
       </div>
     </nav>
@@ -49,20 +49,29 @@
 <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
 
   <div class="centradoAbsolute bg-ligh"  *ngIf="busqueda">
-    <div class="card" *ngFor="let schedule of resultQuery" style="margin: 4px">
-      <div class="card-header">Station: <strong>{{ schedule.stationStop.name}}</strong> </div>
+    <div class="card" *ngFor="let schedule of resultQuery" style="margin: 4px; width: 100%">
+      <div class="card-header">
+        <div style="display: flex; flex-direction: row; justify-content: space-between">
+          <div>From: <strong>{{ schedule.startStops.stationStop.name}}</strong>  </div>
+          <div style="margin-left: 5%"> To: <strong>{{ schedule.endStops.stationStop.name}}</strong></div>
+        </div>
+      </div>
       <div class="card-body">
         <div style="display:flex; flex-direction: row;justify-content: space-between">
           <div>
-            <div>Time: </div>
-            <div>{{ schedule.time }}</div>
+            <div>Departure: </div>
+            <div><strong>{{ schedule.startStops.time }}</strong></div>
+          </div>
+          <div>
+            <div>Arrive: </div>
+            <div><strong>{{ schedule.endStops.time }}</strong></div>
           </div>
           <div>
             <div>Train:</div>
-            <div>{{ schedule.trainStops.number }}</div>
+            <div>{{ schedule.startStops.trainStops.number }}</div>
           </div>
           <div>
-            <button class="btn btn-outline-secondary" (click)="goToBuyTicket(schedule.stationStop.name)">Buy ticket</button>
+            <button class="btn btn-outline-secondary" (click)="goToBuyTicket(schedule.startStops.trainStops.number, schedule.startStops.id, schedule.endStops.id)">Buy ticket</button>
           </div>
         </div>
       </div>
@@ -124,7 +133,7 @@
         <button  type="button" class="btn btn-primary botonLogin" (click)="registred()">Sing up</button>
       </div>
       <div class="centrado">
-        <a (click)="this.loginS.regModalClose()" >Close</a>
+        <a (click)="this.loginS.regModalClose()" style="cursor: pointer" >Close</a>
       </div>
     </div>
   </div>

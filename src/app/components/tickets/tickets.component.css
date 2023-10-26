@@ -1,0 +1,11 @@
+.centradoAbsolute {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  left: 50%;
+
+  background-color: rgb(250,250,250);
+  width: 50%;
+  border-radius: 12px;
+  height: auto;
+}

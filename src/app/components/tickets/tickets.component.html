@@ -1,0 +1,38 @@
+<div class="gradiente" style="width: 100%; height: 105px"></div>
+
+<div style="margin-top: 2%">
+  <h3 class="h3 text-center">My Tickets</h3>
+
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+    <div class="centradoAbsolute bg-ligh">
+
+      <div class="card" *ngFor="let schedule of listTicket" style="margin: 4px; width: 100%">
+        <div class="card-header">
+          <div style="display: flex; flex-direction: row; justify-content: space-between">
+            <div>From: <strong>{{ schedule.startStops.stationStop.name}}</strong>  </div>
+            <div style="margin-left: 5%"> To: <strong>{{ schedule.endStops.stationStop.name}}</strong></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="display:flex; flex-direction: row;justify-content: space-between">
+            <div>
+              <div>Departure: </div>
+              <div><strong>{{ schedule.startStops.time }}</strong></div>
+            </div>
+            <div>
+              <div>Arrive: </div>
+              <div><strong>{{ schedule.endStops.time }}</strong></div>
+            </div>
+            <div>
+              <div>Train:</div>
+              <div>{{ schedule.startStops.trainStops.number }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

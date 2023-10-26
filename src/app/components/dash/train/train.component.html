@@ -1,0 +1,48 @@
+<div>
+  <button class="btn btn-success" (click)="openModal()"  style="width: 150px;  margin: 4px;">New</button>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Number</th>
+      <th scope="col">Seats</th>
+      <th scope="col"> Options </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let station of listTrain | paginate: { itemsPerPage: pageSize, currentPage: p}">
+      <td>{{ station.id }}</td>
+      <td>{{ station.number }}</td>
+      <td>{{ station.seats }}</td>
+      <td>
+        <button class="btn btn-warning" (click)="openModal(station)">Update</button>
+        <button class="btn btn-danger" (click)="delete(station.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<div class="modalCss" style="width: 20%; position: absolute; left: 40% ; top: 25%; height: auto" *ngIf="this.modelView">
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center" >
+    <div style="display: flex;align-items: center; justify-content: center">
+      <h3>Train</h3>
+    </div>
+    <div class="centrado">
+      <input type="text" placeholder="Train number" [(ngModel)]="trainNumber" [ngModelOptions]="{standalone: true}" >
+    </div>
+    <div class="centrado">
+      <input type="text" placeholder="Train seats" [(ngModel)]="seats" [ngModelOptions]="{standalone: true}" >
+    </div>
+    <div class="centrado">
+      <button  type="button" class="btn btn-primary botonLogin" (click)="update()">Update/Create</button>
+    </div>
+    <div class="centrado">
+      <a (click)="this.modelView = false" style="cursor: pointer">Close</a>
+    </div>
+  </div>
+</div>

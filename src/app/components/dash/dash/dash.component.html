@@ -1,0 +1,65 @@
+<div>
+  <h5>Check passenger by Train</h5>
+<br>
+ <div style="display: flex; flex-direction: row; align-items: center">
+   <div>
+     <h6>Select train by Number:</h6>
+     <div>
+       <select [(ngModel)]="trainNumber" [ngModelOptions]="{standalone: true}">
+         <option value="" disabled selected>Select train number:</option>
+         <option *ngFor="let item of listTrain" [value]="item.number"> {{ item.number }}</option>
+       </select>
+     </div>
+   </div>
+   <div style="margin-left: 50px">
+     <h6>Select Day:</h6>
+     <input type="date" id="dateInput" name="dateInput" [(ngModel)]="selectedDate" style="height: 38px">
+   </div>
+   <div style="margin-left: 3%; margin-top: 2%">
+     <button class="btn btn-primary" (click)="this.getPassengers()">Search</button>
+   </div>
+ </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Username</th>
+      <th scope="col">Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Date of Birth</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let station of listPassenger | paginate: { itemsPerPage: pageSize, currentPage: p}">
+      <td>{{ station.id }}</td>
+      <td>{{ station.username }}</td>
+      <td>{{ station.name }}</td>
+      <td>{{ station.surname }}</td>
+      <td>{{ station.dateBirth }}</td>
+      <td>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<div class="modalCss" style="width: 20%; position: absolute; left: 40% ; top: 25%; height: auto" *ngIf="this.modelView">
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center" >
+    <div style="display: flex;align-items: center; justify-content: center">
+      <h3>Station</h3>
+    </div>
+    <div class="centrado">
+      <input type="text" placeholder="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" >
+    </div>
+    <div class="centrado">
+      <button  type="button" class="btn btn-primary botonLogin" (click)="update()">Update/Create</button>
+    </div>
+    <div class="centrado">
+      <a (click)="this.modelView = false">Close</a>
+    </div>
+  </div>
+</div>

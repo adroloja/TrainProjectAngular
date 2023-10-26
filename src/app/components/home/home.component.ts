@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {RegistredUser} from "../../interfaces/RegistredUser";
 import {LoginService} from "../../services/login.service";
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -38,9 +39,13 @@ export class HomeComponent implements OnInit{
 
   resultQuery : any[] = [];
 
+  borderColorFrom : string = "";
+  borderColorTo : string = "";
+  borderColorTimeA : string = "";
+  borderColorTimeB : string = "";
 
 
-  public navLog : boolean = false;
+  //public navLog : boolean = false;
   constructor(private data : DataService,
               private route : Router,
               public loginS : LoginService) { }
@@ -113,7 +118,6 @@ export class HomeComponent implements OnInit{
       this.loginS.openModelReg = false;
       this.loginS.openModal = true;
     });
-
   }
   setRegistredMode(action : boolean){
 
@@ -125,11 +129,32 @@ export class HomeComponent implements OnInit{
 
   }
 
-
   search(){
+
+    this.borderColorFrom = "";
+    this.borderColorTo = "";
+    this.borderColorTimeA = "";
+    this.borderColorTimeB = "";
 
     if(this.stationA == "" || this.stationB == "" || this.startDateTime == "" || this.endDateTime == ""){
 
+      if(this.endDateTime == ""){
+
+        this.borderColorTimeB = 'red';
+      }
+      if(this.startDateTime == ""){
+
+        this.borderColorTimeA = 'red';
+      }
+
+      if(this.stationA == ""){
+
+        this.borderColorFrom = "red";
+      }
+      if(this.stationB == ""){
+
+        this.borderColorTo = "red";
+      }
       alert("Please, complete all field, Thanks.");
       return;
     }
@@ -147,21 +172,39 @@ export class HomeComponent implements OnInit{
     });
 
     this.data.searchTrain(this.idStationA, this.idStationB, this.startDateTime, this.endDateTime).subscribe(result => {
+
       this.resultQuery = result;
+
+      if(this.resultQuery.length == 0){
+
+        alert("There isn´t any result. Thanks");
+      }
     });
 
     this.busqueda = true;
   }
 
-  goToBuyTicket(id : string){
+  goToBuyTicket(trainNumber : number, startStopsId : number, endStopsId : number){
 
-    this.route.navigate(["/buyTicket", id]);
+    const id = localStorage.getItem("id");
+
+    if(id == null){
+
+      alert("Please, you must be loggin.")
+      return;
+
+    }
+
+      this.data.buyTicket(trainNumber, startStopsId, endStopsId, +id).subscribe(result => {
+
+        console.log(result);
+        alert("Buy ticket completed successfully");
+      }, error => {
+
+        alert(error.error);
+      });
   }
 
-  back(){
-
-    this.busqueda = false;
-  }
 
 
 }

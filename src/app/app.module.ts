@@ -10,7 +10,6 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { SearchTrainComponent } from './components/search-train/search-train.component';
 import { BuyTicketComponent } from './components/buy-ticket/buy-ticket.component';
-import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuAdminComponent } from './components/menu-admin/menu-admin.component';
 import { StationComponent } from './components/dash/station/station.component';
@@ -20,6 +19,8 @@ import { PassengerComponent } from './components/dash/passenger/passenger.compon
 import {NgxPaginationModule} from "ngx-pagination";
 import { TrainComponent } from './components/dash/train/train.component';
 import { DashComponent } from './components/dash/dash/dash.component';
+import { TicketsComponent } from './components/tickets/tickets.component';
+import { ScheduleComponent } from './components/dash/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,6 @@ import { DashComponent } from './components/dash/dash/dash.component';
     StationScheduleComponent,
     SearchTrainComponent,
     BuyTicketComponent,
-    LoginComponent,
     NavbarComponent,
     MenuAdminComponent,
     StationComponent,
@@ -37,7 +37,9 @@ import { DashComponent } from './components/dash/dash/dash.component';
     TicketComponent,
     PassengerComponent,
     TrainComponent,
-    DashComponent
+    DashComponent,
+    TicketsComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,

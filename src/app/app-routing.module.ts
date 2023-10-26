@@ -8,15 +8,12 @@ import {employeGuard} from "./guard/employe.guard";
 import {userGuard} from "./guard/user.guard";
 import {SearchTrainComponent} from "./components/search-train/search-train.component";
 import {BuyTicketComponent} from "./components/buy-ticket/buy-ticket.component";
-import {LoginComponent} from "./components/login/login.component";
+import {TicketsComponent} from "./components/tickets/tickets.component";
 
 const routes: Routes = [
 
   {
     path: "", component: HomeComponent
-  },
-  {
-    path: "login", component: LoginComponent
   },
   {
     path: "employe", component: EmployeComponent, canActivate: [loginGuard, employeGuard]
@@ -29,6 +26,9 @@ const routes: Routes = [
   },
   {
     path: "buyTicket", component: BuyTicketComponent, canActivate: [loginGuard, userGuard]
+  },
+  {
+    path: "tickets/:id", component: TicketsComponent, canActivate: [loginGuard, userGuard]
   },
   {
     path: "buyTicket/:param", component: BuyTicketComponent, canActivate: [loginGuard, userGuard]

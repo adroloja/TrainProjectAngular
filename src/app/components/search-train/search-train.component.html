@@ -1,0 +1,43 @@
+<div class="gradiente" style="width: 100%; height: 105px">
+  <div  style="width: 100%; height: auto; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+    <div style="position: absolute; width: 47%; margin-top: 13%; height: 70px; border-radius: 15px;   background-color: grey">
+      <div>
+        <nav class="navbar navbar-light bg-light">
+          <div class="container-fluid">
+            <form class="d-flex" >
+              <span style="margin-top: 12px; margin-right: 20px; margin-left: 10px; font-size: large;">From</span>
+              <div>
+                <select [(ngModel)]="stationA" [ngModelOptions]="{standalone: true}">
+                  <option value="" disabled selected>Select station A:</option>
+                  <option *ngFor="let item of listStation" [value]="item.name"> {{ item.name }}</option>
+                </select>
+              </div>
+              <div style="width: 30px"></div>
+              <span style="margin-top: 12px; font-size: large; margin-right: 10px">&nbsp;Time&nbsp;</span>
+              <input type="date" id="dateInput" name="dateInput" [(ngModel)]="selectedDate" style="height: 38px">
+              <button class="btn btn-primary" type="submit" (click)="search()">Search</button>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="centradoAbsolute bg-ligh"  *ngIf="busqueda">
+    <div class="card" *ngFor="let schedule of resultQuery" style="margin: 4px">
+      <div class="card-header">Station: <strong>{{ schedule.stationStop.name}}</strong> </div>
+      <div class="card-body">
+        <div style="display:flex; flex-direction: row;justify-content: space-between">
+          <div>
+            <div>Time: </div>
+            <div>{{ schedule.time }}</div>
+          </div>
+          <div>
+            <div>Train:</div>
+            <div>{{ schedule.trainStops.number }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

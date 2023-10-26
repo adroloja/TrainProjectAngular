@@ -76,6 +76,15 @@ export class DataService {
     return this.http.post<any[]>(GLOBAL.url + "getStopsTrainsDay", { trainNumber : trainNumber, startTime : startTime}, { headers });
 
   }
+  getStopsAllTrainByDay(startTime : string){
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.loginS.getToken()}`
+    });
+
+    return this.http.post<any[]>(GLOBAL.url + "getStopsAllTrainByDay", {startTime : startTime }, { headers });
+  }
 
   createStops(trainId: number, scheduleId : number, stationId : number, time : string){
 
@@ -85,6 +94,16 @@ export class DataService {
     });
 
     return this.http.post<any[]>(GLOBAL.url + "createStops", {trainId : trainId, scheduleId : scheduleId, stationId : stationId, time : time }, { headers });
+  }
+
+  deleteStops(id : number){
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.loginS.getToken()}`
+    });
+
+    return this.http.delete<any>(GLOBAL.url + "deleteStops/" + id, { headers });
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -144,6 +163,15 @@ export class DataService {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+  searchTrain2(idStationA : number, idStationB : number, startTime: string, endTime : string){
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.loginS.getToken()}`
+    });
+    return this.http.post<any[]>(GLOBAL.url + "getStopsFromTimeStation", { stationId1 : idStationA, stationId2 : idStationB,
+      startTime : startTime, endTime : endTime }, { headers });
+  }
   searchTrain(idStationA : number, idStationB : number, startTime : string, endTime : string){
 
     const headers = new HttpHeaders({
@@ -172,7 +200,7 @@ export class DataService {
       'Authorization': `Bearer ${this.loginS.getToken()}`
     });
 
-    return this.http.post<any>(GLOBAL.url + "addTrain", { number : number, seats : number }, { headers });
+    return this.http.post<any>(GLOBAL.url + "addTrain", { number : number, seats : seats }, { headers });
   }
 
   deleteTrain(id : number){
@@ -223,6 +251,17 @@ export class DataService {
     return this.http.post<any[]>(GLOBAL.url + "getTicketByIdAndDay", { idPassenger : idPassenger, day : date }, { headers });
   }
 
+  getTicketByUser(id : number){
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.loginS.getToken()}`
+    });
+
+    return this.http.get<any[]>(GLOBAL.url + "getTicket/" + id, { headers });
+
+  }
+
   getAllTicket(){
 
     const headers = new HttpHeaders({
@@ -231,6 +270,20 @@ export class DataService {
     });
 
     return this.http.get<any[]>(GLOBAL.url + "getAllTicket", { headers });
+  }
+
+  updateTicket(){
+
+  }
+
+  deleteTicket(id : number){
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.loginS.getToken()}`
+    });
+
+    return this.http.delete<any>(GLOBAL.url + "deleteTicket/" + id, { headers });
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -310,6 +363,35 @@ export class DataService {
     });
 
     return this.http.get<any[]>(GLOBAL.url + "getAllSchedules", { headers });
+  }
+
+  createSchedule(trainNumber : number){
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.loginS.getToken()}`
+    });
+
+    return this.http.post<any>(GLOBAL.url + "insertSchedule", {trainNumber : trainNumber}, { headers });
+  }
+
+  updateSchedule(id : number, trainNumber : number){
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.loginS.getToken()}`
+    });
+
+    return this.http.put<any[]>(GLOBAL.url + "updateSchedule", { id : id, trainNumber : trainNumber }, { headers });
+}
+
+  deleteSchedule(id : number){
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.loginS.getToken()}`
+    });
+
+    return this.http.delete<any[]>(GLOBAL.url + "deleteSchedule/" + id, { headers });
   }
 
 }

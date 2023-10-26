@@ -1,0 +1,33 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div style="width: 7%"></div>
+<div *ngIf="!this.loginS.employe" style="cursor: pointer" routerLink="/">
+  <p>Main</p>
+</div>
+  <div *ngIf="!this.loginS.employe" style="cursor: pointer" routerLink="/searchTrain">
+    <p>Schedule</p>
+  </div>
+  <div *ngIf="!this.loginS.employe" style="cursor: pointer" routerLink="/buyTicket" (click)="redirect()">
+    <p>Buy Ticket</p>
+  </div>
+  <div *ngIf="!this.loginS.employe && this.loginS.logged" style="cursor: pointer" (click)="redirectToTickets()">
+    <p>My tickets</p>
+  </div>
+  <div style="width: 20%"></div>
+
+  <div class="text-end" style="margin-right: 4%">
+<div *ngIf="!this.loginS.logged">
+
+  <button type="button" class="btn btn-outline-light me-2" (click)="openModal()" routerLink="/">Login</button>
+  <button type="button" class="btn btn-outline-secondary" (click)="openReg()" routerLink="/">Sing up</button>
+</div>
+    <div *ngIf="this.loginS.logged" style="display: flex; flex-direction: row">
+      <p style="margin-top: 6%; margin-right: 6%">Welcome </p>
+      <button class="btn btn-outline-light" (click)="closeSession()">Sing out</button>
+    </div>
+  </div>
+
+</nav>
+
+
+
+

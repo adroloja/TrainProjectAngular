@@ -1,0 +1,60 @@
+<div class="gradiente" style="width: 100%; height: 105px">
+  <div  style="width: 100%; height: auto; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+    <div style="position: absolute; width: 40%; margin-top: 13%; height: 65px; border-radius: 15px;   background-color: grey">
+      <div>
+        <nav class="navbar navbar-light bg-light">
+          <div class="container-fluid">
+            <form class="d-flex" >
+              <span style="margin-top: 12px; margin-right: 20px; margin-left: 10px; font-size: large;">From</span>
+              <div>
+     <div style="display: flex; flex-direction: row; align-items: center">
+       <div>
+       <select [(ngModel)]="stationStart" (change)="getStopsStarStation()" [ngModelOptions]="{standalone: true}">
+         <option value="" disabled selected>Select start station:</option>
+         <option *ngFor="let item of listStation" [value]="item.name"> {{ item.name }}</option>
+       </select>
+     </div>
+
+       <div *ngIf="step1" style="display: flex; flex-direction: row; align-items: center">
+         <div><span style="margin-top: 12px; margin-right: 20px; margin-left: 10px; font-size: large;">Time </span></div>
+         <select [(ngModel)]="timeStart" (change)="getEndStops()" [ngModelOptions]="{standalone: true}">
+           <option value="" disabled selected>Select time:</option>
+           <option *ngFor="let item of listStopStartStation" [value]="item.time"> {{ item.time }}</option>
+         </select>
+       </div>
+     </div>
+     <div> <div *ngIf="step2" style="width: 100%">
+       <br>
+       <h5>Select a destination:</h5>
+       <br>
+      <div  *ngIf="listDestinations.length != 0">
+        <div *ngFor="let option of listDestinations" class="card" style="margin: 4px;" >
+          <div class="card-header">
+            <label><strong>{{ option.stationStop.name }} </strong>    </label>
+          </div>
+          <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between">
+            <span>{{ option.time }}</span>
+            <div class="text-end">
+              <button class="btn btn-outline-secondary" (click)="buyTicket(option.stationStop.id)">Buy Ticket</button>
+            </div>
+          </div>
+
+
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+          </div>
+        </div>
+      </div>
+       <div  *ngIf="listDestinations.length == 0">
+          There isn´t any result for this Stop.
+       </div>
+
+     </div></div>
+   </div>
+
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
