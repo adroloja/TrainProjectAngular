@@ -1,0 +1,30 @@
+<div>
+  <h5>Get users location</h5>
+  <div style="display: flex; flex-direction: row; justify-content: space-around; margin-top: 3%">
+    <div>
+      <h6>Select Passenger:</h6>
+      <select [(ngModel)]="passengerId" [ngModelOptions]="{standalone: true}">
+        <option value="" disabled selected>Select Passenger:</option>
+        <option *ngFor="let item of listPassenger" [value]="item.id"> {{ item.name }}</option>
+      </select>
+    </div>
+    <div>
+      <div>
+        <h6>Select start day:</h6>
+        <input type="date" id="dateStartInput" name="dateInput" [(ngModel)]="startDay" style="height: 38px">
+      </div>
+    </div>
+    <div>
+      <div>
+        <h6>Select end day:</h6>
+        <input type="date" id="dateEndInput" name="dateInput" [(ngModel)]="endDay" style="height: 38px">
+      </div>
+    </div>
+    <div style="margin-top: 2%">
+      <button class="btn btn-primary" (click)="show()" style="width: 150px;  margin: 4px;">Show</button>
+    </div>
+  </div>
+  <br>
+<br>
+</div>
+<div id="map"></div>
