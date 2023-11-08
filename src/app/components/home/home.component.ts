@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit{
     dateOfBirth: "",
     name: "",
     surname: "",
+    email: ""
   };
 
   username: string | undefined;
@@ -97,11 +98,9 @@ export class HomeComponent implements OnInit{
 
     }, error => {
 
-      if(error.status === 401){
+        alert(error.error.message);
 
-        alert(error.message);
 
-        }
       });
   }
   registred(){
@@ -112,7 +111,7 @@ export class HomeComponent implements OnInit{
       return;
     }
 
-    this.data.singUp(this.newUser.username, this.newUser.name, this.newUser.surname, this.newUser.password, this.newUser.dateOfBirth, false).subscribe(result => {
+    this.data.singUp(this.newUser.username, this.newUser.name, this.newUser.surname, this.newUser.password, this.newUser.dateOfBirth, false, this.newUser.email).subscribe(result => {
 
       alert("Sing up successed");
       this.loginS.openModelReg = false;

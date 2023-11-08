@@ -11,6 +11,7 @@ interface Passenger {
   employe : boolean;
   password : string;
   dateBirth : string;
+  email : string;
 }
 @Component({
   selector: 'app-passenger',
@@ -32,7 +33,8 @@ export class PassengerComponent implements OnInit{
     name: "",
     password: "",
     surname: "",
-    username: ""
+    username: "",
+    email: ""
 
   }
 
@@ -59,7 +61,8 @@ export class PassengerComponent implements OnInit{
       this.passenger.surname,
       this.passenger.password,
       this.passenger.dateBirth,
-      this.passenger.employe).subscribe(result =>{
+      this.passenger.employe,
+      this.passenger.email).subscribe(result =>{
 
       this.modelView = false;
       this.refreshPassenger();
@@ -98,7 +101,8 @@ export class PassengerComponent implements OnInit{
                       this.passenger.surname,
                       this.passenger.password,
                       this.passenger.dateBirth,
-                      this.passenger.employe).subscribe(result =>{
+                      this.passenger.employe,
+                      this.passenger.email).subscribe(result =>{
 
       this.modelView = false;
       this.refreshPassenger();
@@ -128,7 +132,8 @@ export class PassengerComponent implements OnInit{
         name: "",
         password: "",
         surname: "",
-        username: ""
+        username: "",
+        email: ""
       }
       this.idPassenger = 0;
       this.modelView = true;

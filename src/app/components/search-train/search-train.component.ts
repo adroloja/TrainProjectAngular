@@ -28,7 +28,7 @@ export class SearchTrainComponent  implements OnInit{
   search(){
 
     this.busqueda = true;
-
+    console.log(this.stationA, this.selectedDate);
     this.data.getTrainsScheudleFromOneStationByDate(this.stationA, this.selectedDate).subscribe(result => {
       console.log(result);
       this.resultQuery = result;

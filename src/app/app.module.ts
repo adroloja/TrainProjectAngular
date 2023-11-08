@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { EmployeComponent } from './components/employe/employe.component';
-import { StationScheduleComponent } from './components/station-schedule/station-schedule.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { SearchTrainComponent } from './components/search-train/search-train.component';
@@ -21,13 +20,14 @@ import { TrainComponent } from './components/dash/train/train.component';
 import { DashComponent } from './components/dash/dash/dash.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { ScheduleComponent } from './components/dash/schedule/schedule.component';
+import { LocationComponent } from './components/dash/location/location.component';
+import { ConfirmValidateComponent } from './components/confirm-validate/confirm-validate.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     EmployeComponent,
-    StationScheduleComponent,
     SearchTrainComponent,
     BuyTicketComponent,
     NavbarComponent,
@@ -39,14 +39,18 @@ import { ScheduleComponent } from './components/dash/schedule/schedule.component
     TrainComponent,
     DashComponent,
     TicketsComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    LocationComponent,
+    ConfirmValidateComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -314,7 +314,7 @@ export class DataService {
     return this.http.get<any[]>(GLOBAL.url + "getAllPassengers", { headers });
   }
 
-  singUp(username : string, name : string, surname : string, password : string, dateBirth : string, employe : boolean){
+  singUp(username : string, name : string, surname : string, password : string, dateBirth : string, employe : boolean, email : string){
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -322,10 +322,10 @@ export class DataService {
     });
 
     return this.http.post<any[]>(GLOBAL.url + "registrer", { username : username, name : name, surname : surname, password : password,
-                  dateBirth : dateBirth, employe : employe }, { headers });
+                  dateBirth : dateBirth, employe : employe, email : email }, { headers });
   }
 
-  updatePassenger(id : number, username : string, name : string, surname : string, password : string, dateBirth : string, employe : boolean){
+  updatePassenger(id : number, username : string, name : string, surname : string, password : string, dateBirth : string, employe : boolean, email : string){
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -333,7 +333,7 @@ export class DataService {
     });
 
     return this.http.put<any[]>(GLOBAL.url + "updatePassenger", { id : id, username : username, name : name, surname : surname, password : password,
-      dateBirth : dateBirth, employe : employe }, { headers });
+      dateBirth : dateBirth, employe : employe, email : email }, { headers });
 
   }
 
@@ -346,6 +346,8 @@ export class DataService {
 
     return this.http.delete<any[]>(GLOBAL.url + "deletePassenger/" + id, { headers });
   }
+
+
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -388,10 +390,48 @@ export class DataService {
   deleteSchedule(id : number){
 
     const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.loginS.getToken()}`
     });
 
     return this.http.delete<any[]>(GLOBAL.url + "deleteSchedule/" + id, { headers });
   }
 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //
+  //                                                      LOCATION
+  //
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  getLocationByUserBetweenDays(idPassenger : number, startDate : string, endDate : string){
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.loginS.getToken()}`
+    });
+
+    return this.http.post<any[]>(GLOBAL.url + "getLocationPassengerBetweenDate", {idPassenger : idPassenger, startDate : startDate, endDate : endDate}, { headers });
+
+  }
+
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                                     USER VALIDATION
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  checkTokenValidation(id : number, token : string){
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post<any>(GLOBAL.url + "checkValidationToken", { id : id, token : token }, { headers });
+  }
+
 }
+
+

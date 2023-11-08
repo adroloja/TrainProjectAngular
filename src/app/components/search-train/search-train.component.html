@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-
+  <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
   <div class="centradoAbsolute bg-ligh"  *ngIf="busqueda">
     <div class="card" *ngFor="let schedule of resultQuery" style="margin: 4px">
       <div class="card-header">Station: <strong>{{ schedule.stationStop.name}}</strong> </div>
@@ -39,5 +39,6 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>

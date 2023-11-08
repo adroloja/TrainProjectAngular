@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "./services/login.service";
+import {LocationService} from "./services/location.service";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,12 @@ import {LoginService} from "./services/login.service";
 export class AppComponent implements OnInit{
   title = 'FrontTrainProject';
 
-  constructor(private login : LoginService) {
+  constructor(private login : LoginService,
+              private location : LocationService) {
   }
   ngOnInit(): void {
+
+    this.location.sendLocation();
 
     if(this.login.isLoged()){
 

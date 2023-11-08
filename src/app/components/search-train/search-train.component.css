@@ -1,11 +1,12 @@
 
 .centradoAbsolute {
-  position: absolute;
-  top: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
+
   background-color: rgb(250,250,250);
-  width: 45%;
+  width: 40%;
   border-radius: 12px;
   height: auto;
 }

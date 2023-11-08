@@ -6,9 +6,11 @@
   <div *ngIf="!this.loginS.employe" style="cursor: pointer" routerLink="/searchTrain">
     <p>Schedule</p>
   </div>
+<!--
   <div *ngIf="!this.loginS.employe" style="cursor: pointer" routerLink="/buyTicket" (click)="redirect()">
     <p>Buy Ticket</p>
   </div>
+-->
   <div *ngIf="!this.loginS.employe && this.loginS.logged" style="cursor: pointer" (click)="redirectToTickets()">
     <p>My tickets</p>
   </div>

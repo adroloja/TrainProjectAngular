@@ -8,6 +8,7 @@
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Username</th>
+      <th scope="col">Email</th>
       <th scope="col">Name</th>
       <th scope="col">Surname</th>
       <th scope="col">Date of Birth</th>
@@ -19,6 +20,7 @@
     <tr *ngFor="let passenger of listPassenger | paginate: { itemsPerPage: pageSize, currentPage: p}">
       <td>{{ passenger.id }}</td>
       <td>{{ passenger.username }}</td>
+      <td>{{ passenger.email }}</td>
       <td>{{ passenger.name }}</td>
       <td>{{ passenger.surname }}</td>
       <td>{{ passenger.dateBirth }}</td>
@@ -40,6 +42,9 @@
     </div>
     <div class="centrado">
       <input type="text" placeholder="Username" [(ngModel)]="passenger.username" [ngModelOptions]="{standalone: true}" >
+    </div>
+    <div class="centrado">
+      <input type="text" placeholder="Email" [(ngModel)]="passenger.email" [ngModelOptions]="{standalone: true}" >
     </div>
     <div class="centrado">
       <input type="password" placeholder="Password" [(ngModel)]="passenger.password" [ngModelOptions]="{standalone: true}" >
