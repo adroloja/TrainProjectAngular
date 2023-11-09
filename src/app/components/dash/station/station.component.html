@@ -17,7 +17,7 @@
       <td>{{ station.name }}</td>
       <td>
         <button class="btn btn-warning" (click)="openModal(station)">Update</button>
-        <button class="btn btn-danger" (click)="deleteStation(station.id)">Delete</button>
+        <button class="btn btn-danger" (click)="openModalConfirm(station.id)">Delete</button>
       </td>
     </tr>
     </tbody>
@@ -33,11 +33,31 @@
     <div class="centrado">
       <input type="text" placeholder="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" >
     </div>
-    <div class="centrado">
-      <button  type="button" class="btn btn-primary botonLogin" style="width: 150px;  margin: 4px;" (click)="update()">Update/Create</button>
+    <div class="centrado" *ngIf="name != ''">
+      <button  type="button" class="btn btn-primary botonLogin" style="width: 150px;  margin: 4px;" (click)="update()">Update</button>
+    </div>
+    <div class="centrado" *ngIf="name == ''">
+      <button  type="button" class="btn btn-primary botonLogin" style="width: 150px;  margin: 4px;" (click)="update()">Create</button>
     </div>
     <div class="centrado">
       <a (click)="this.modelView = false" style="cursor: pointer">Close</a>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #f8f8f8">
+        <h4 class="modal-title" >Confirm</h4>
+
+      </div>
+      <div class="modal-body">
+        <p>Are you sure?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="delete()" >Yes</button>
+        <button type="button" class="btn btn-danger" (click)="onCloseHandled()" >No</button>
+      </div>
     </div>
   </div>
 </div>

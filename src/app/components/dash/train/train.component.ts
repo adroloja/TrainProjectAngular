@@ -19,6 +19,9 @@ export class TrainComponent {
 
   modelView : boolean = false;
 
+  display = "none";
+  trainId : number = 0;
+
   constructor(private data : DataService) {  }
 
   ngOnInit(): void {
@@ -29,14 +32,15 @@ export class TrainComponent {
     })
   }
 
-  delete(id : number){
+  delete(){
 
-    this.data.deleteTrain(id).subscribe(result => {
+    this.data.deleteTrain(this.trainId).subscribe(result => {
 
       alert(result.message);
       this.refreshList();
+      this.display = "none";
     }, error => {
-      alert(error.message);
+      alert(error.error.message);
     })
 
   }
@@ -88,5 +92,14 @@ export class TrainComponent {
     this.data.getTrains().subscribe(result => {
       this.listTrain = result;
     })
+  }
+
+  openModalConfirm(trainId : number) {
+    this.display = "block";
+
+    this.trainId = trainId;
+  }
+  onCloseHandled() {
+    this.display = "none";
   }
 }

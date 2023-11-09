@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 // @ts-ignore
 import * as mapboxgl from 'mapbox-gl';
 import {DataService} from "../../../services/data.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
@@ -18,7 +19,7 @@ export class LocationComponent implements OnInit{
   endDay : string = "";
   passengerId : number = 0;
 
-  mapInitialized : boolean = false;
+  listStations : any[] = [];
 
   constructor(private data : DataService) {  }
   ngOnInit(){
@@ -32,9 +33,22 @@ export class LocationComponent implements OnInit{
       zoom: 9
     });
 
+    this.data.getStation().subscribe(result =>{
 
+      this.listStations = result;
 
+      this.listStations.forEach(n => {
 
+        new mapboxgl.Marker({
+          color: "#000000",
+          draggable: false
+        }).setLngLat([n.lng, n.lat])
+          .setPopup(new mapboxgl.Popup().setHTML(`<h5>${n.name}</h5>`))
+          .addTo(this.map);
+      });
+    }, error => {
+
+    });
 
 
     this.data.getAllPassengers().subscribe(result => {
@@ -77,8 +91,16 @@ export class LocationComponent implements OnInit{
        });
      }
 
+      this.listStations.forEach(n => {
 
-      console.log(result);
+        new mapboxgl.Marker({
+          color: "#000000",
+          draggable: false
+        }).setLngLat([n.lng, n.lat])
+          .setPopup(new mapboxgl.Popup().setHTML(`<h5>${n.name}</h5>`))
+          .addTo(this.map);
+      });
+
       this.listLocations = result;
       this.listLocations.forEach( point => {
 
@@ -106,9 +128,6 @@ export class LocationComponent implements OnInit{
 
       });
     });
-
-
-
   }
 
 }

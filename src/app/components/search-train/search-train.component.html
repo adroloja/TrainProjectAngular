@@ -15,7 +15,7 @@
               <div style="width: 30px"></div>
               <span style="margin-top: 12px; font-size: large; margin-right: 10px">&nbsp;Time&nbsp;</span>
               <input type="date" id="dateInput" name="dateInput" [(ngModel)]="selectedDate" style="height: 38px">
-              <button class="btn btn-primary" type="submit" (click)="search()">Search</button>
+              <button class="btn btn-primary" type="submit" (click)="search()" [disabled]="selectedDate == '' || stationA == ''">Search</button>
             </form>
           </div>
         </nav>
@@ -24,7 +24,8 @@
   </div>
   <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
   <div class="centradoAbsolute bg-ligh"  *ngIf="busqueda">
-    <div class="card" *ngFor="let schedule of resultQuery" style="margin: 4px">
+    <div *ngIf="resultQuery.length == 0">Sorry this station doesn´t have any Stop for this day. Thanks.</div>
+    <div class="card" *ngFor="let schedule of resultQuery | paginate: { itemsPerPage: pageSize, currentPage: p}" style="margin: 4px">
       <div class="card-header">Station: <strong>{{ schedule.stationStop.name}}</strong> </div>
       <div class="card-body">
         <div style="display:flex; flex-direction: row;justify-content: space-between">
@@ -39,6 +40,7 @@
         </div>
       </div>
     </div>
+    <pagination-controls class="my-pagination" (pageChange)="p = $event" *ngIf="resultQuery.length != 0"></pagination-controls>
   </div>
   </div>
 </div>

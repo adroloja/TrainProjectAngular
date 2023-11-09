@@ -33,6 +33,8 @@ export class TicketComponent  implements OnInit{
   stationBId : number = 0;
   timeStops : string = "";
 
+  display = "none";
+  ticketId : number = 0;
 
   constructor(private data : DataService) {  }
 
@@ -121,12 +123,13 @@ export class TicketComponent  implements OnInit{
       alert(error.error));
   }
 
-  delete(id : number){
+  delete(){
 
-    this.data.deleteTicket(id).subscribe(result => {
+    this.data.deleteTicket(this.ticketId).subscribe(result => {
 
       alert(result.message);
       this.refresh();
+      this.display = "none";
     }, error => {
 
       alert(error.error);
@@ -153,5 +156,14 @@ export class TicketComponent  implements OnInit{
   openNewsTicket(){
 
     this.newTicket = true;
+  }
+
+  openModal(ticketId : number) {
+    this.display = "block";
+    this.ticketId = ticketId;
+
+  }
+  onCloseHandled() {
+    this.display = "none";
   }
 }

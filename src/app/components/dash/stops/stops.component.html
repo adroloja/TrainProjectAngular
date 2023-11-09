@@ -76,12 +76,28 @@
       <td>{{ station.stationStop.name }}</td>
       <td>{{ station.time }}</td>
       <td>
-        <button class="btn btn-danger" (click)="delete(station.id)">Delete</button>
+        <button class="btn btn-danger" (click)="openModal(station.id)">Delete</button>
       </td>
     </tr>
     </tbody>
   </table>
   <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
 </div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #f8f8f8">
+        <h4 class="modal-title" >Confirm</h4>
 
+      </div>
+      <div class="modal-body">
+        <p>Are you sure?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="delete()" >Yes</button>
+        <button type="button" class="btn btn-danger" (click)="onCloseHandled()" >No</button>
+      </div>
+    </div>
+  </div>
+</div>
 

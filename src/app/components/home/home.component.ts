@@ -45,8 +45,16 @@ export class HomeComponent implements OnInit{
   borderColorTimeA : string = "";
   borderColorTimeB : string = "";
 
+  display = "none";
 
-  //public navLog : boolean = false;
+  buyTrainStopNumber : number = 0;
+  buyStartStopId : number = 0;
+  buyEndStopId : number = 0;
+
+  p: number = 1;
+  pageSize: number = 5;
+
+
   constructor(private data : DataService,
               private route : Router,
               public loginS : LoginService) { }
@@ -183,7 +191,7 @@ export class HomeComponent implements OnInit{
     this.busqueda = true;
   }
 
-  goToBuyTicket(trainNumber : number, startStopsId : number, endStopsId : number){
+  goToBuyTicket(){
 
     const id = localStorage.getItem("id");
 
@@ -194,16 +202,27 @@ export class HomeComponent implements OnInit{
 
     }
 
-      this.data.buyTicket(trainNumber, startStopsId, endStopsId, +id).subscribe(result => {
+      this.data.buyTicket(this.buyTrainStopNumber, this.buyStartStopId, this.buyEndStopId, +id).subscribe(result => {
 
         console.log(result);
         alert("Buy ticket completed successfully");
+        this.display = "none";
       }, error => {
 
         alert(error.error);
       });
   }
 
+  openModal(trainId : number, startId : number, endId : number) {
+    this.display = "block";
+
+    this.buyStartStopId = startId;
+    this.buyEndStopId = endId;
+    this.buyTrainStopNumber = trainId;
+  }
+  onCloseHandled() {
+    this.display = "none";
+  }
 
 
 }

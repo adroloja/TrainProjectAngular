@@ -1,5 +1,6 @@
 import {Component,  OnInit} from '@angular/core';
 import {DataService} from "../../../services/data.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-station',
@@ -19,6 +20,9 @@ export class StationComponent implements OnInit{
   listStation : any[] = [];
   station : any;
 
+  stationId : number = 0;
+  display = "none";
+
   constructor(private data : DataService) {  }
 
   ngOnInit(): void {
@@ -35,7 +39,7 @@ export class StationComponent implements OnInit{
 
       this.data.updateStation(this.id, this.name).subscribe(result =>{
 
-        alert(result);
+        alert(result.message);
         this.refreshList();
         this.modelView = false;
 
@@ -48,6 +52,7 @@ export class StationComponent implements OnInit{
 
         this.refreshList();
         this.modelView = false;
+
       }, error => {
 
         alert(error.error.message);
@@ -56,12 +61,16 @@ export class StationComponent implements OnInit{
 
   }
 
-  deleteStation(id : number){
+  delete(){
 
-    this.data.deleteStation(id).subscribe(result =>{
+    this.data.deleteStation(this.stationId).subscribe(result =>{
 
       alert(result.message);
       this.refreshList();
+      this.display = "none";
+    }, error => {
+
+      alert(error.error.message);
     });
   }
 
@@ -85,5 +94,14 @@ export class StationComponent implements OnInit{
     this.data.getStation().subscribe(result => {
       this.listStation = result
     });
+  }
+
+  openModalConfirm(stationId : number) {
+    this.display = "block";
+
+    this.stationId = stationId;
+  }
+  onCloseHandled() {
+    this.display = "none";
   }
 }

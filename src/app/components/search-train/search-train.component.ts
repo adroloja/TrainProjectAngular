@@ -16,6 +16,9 @@ export class SearchTrainComponent  implements OnInit{
 
   busqueda : boolean = false;
 
+  p: number = 1;
+  pageSize: number = 5;
+
   constructor(private data : DataService) {  }
   ngOnInit(): void {
 

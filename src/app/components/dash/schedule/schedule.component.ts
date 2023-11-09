@@ -19,6 +19,9 @@ export class ScheduleComponent implements OnInit{
 
   p: number = 1;
   pageSize: number = 20;
+
+  display = "none";
+  scheduleId : number = 0;
   constructor(private data : DataService) { }
 
   ngOnInit(): void {
@@ -34,12 +37,13 @@ export class ScheduleComponent implements OnInit{
     });
   }
 
-  delete(id : number){
+  delete(){
 
-    this.data.deleteSchedule(id).subscribe(result => {
+    this.data.deleteSchedule(this.scheduleId).subscribe(result => {
 
       alert("Deleted successfully");
       this.refresh();
+      this.display = "none";
     }, error => {
 
       alert(error.error.message);
@@ -97,5 +101,14 @@ export class ScheduleComponent implements OnInit{
 
       this.listSchedule = result;
     });
+  }
+
+  openModalConfirm(scheduleId : number) {
+    this.display = "block";
+
+    this.scheduleId = scheduleId;
+  }
+  onCloseHandled() {
+    this.display = "none";
   }
 }

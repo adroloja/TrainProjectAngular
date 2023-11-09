@@ -43,6 +43,9 @@ export class PassengerComponent implements OnInit{
   p: number = 1;
   pageSize: number = 20;
 
+  passengerId : number = 0;
+  display = "none";
+
   constructor(private data : DataService) { }
 
   ngOnInit(): void {
@@ -75,12 +78,13 @@ export class PassengerComponent implements OnInit{
 
   }
 
-  delete(id : number){
+  delete(){
 
-    this.data.deletePassenger(id).subscribe(result =>{
+    this.data.deletePassenger(this.passengerId).subscribe(result =>{
 
       this.modelView = false;
       this.refreshPassenger();
+      this.display = "none";
     }, error1 => {
       alert(error1.error);
     });
@@ -141,13 +145,21 @@ export class PassengerComponent implements OnInit{
     }
 
   }
-
   refreshPassenger(){
 
     this.data.getAllPassengers().subscribe(result => {
 
       this.listPassenger = result;
     })
+  }
+
+  openModalConfirm(passengerId : number) {
+    this.display = "block";
+
+    this.passengerId = passengerId;
+  }
+  onCloseHandled() {
+    this.display = "none";
   }
 
 }

@@ -11,6 +11,9 @@ export class TicketsComponent implements OnInit{
 
   listTicket : any[] = [];
 
+  p: number = 1;
+  pageSize: number = 5;
+
   constructor(private data : DataService,
               private route : ActivatedRoute) { }
   ngOnInit(): void {

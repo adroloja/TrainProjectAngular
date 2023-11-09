@@ -90,7 +90,7 @@
       <td>{{ ticket.endStops.time }}</td>
       <td>{{ ticket.seat }}/{{ ticket.startStops.trainStops.seats }}</td>
       <td>
-        <button class="btn btn-danger" (click)="delete(ticket.id)">Delete</button>
+        <button class="btn btn-danger" (click)="openModal(ticket.id)">Delete</button>
       </td>
     </tr>
     </tbody>
@@ -111,6 +111,25 @@
     </div>
     <div class="centrado">
       <a (click)="this.modelView = false">Close</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #f8f8f8">
+        <h4 class="modal-title" >Confirm</h4>
+
+      </div>
+      <div class="modal-body">
+        <p>Are you sure?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="delete()" >Yes</button>
+        <button type="button" class="btn btn-danger" (click)="onCloseHandled()" >No</button>
+      </div>
     </div>
   </div>
 </div>

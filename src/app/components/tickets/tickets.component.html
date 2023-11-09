@@ -5,8 +5,8 @@
 
   <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
     <div class="centradoAbsolute bg-ligh">
-
-      <div class="card" *ngFor="let schedule of listTicket" style="margin: 4px; width: 100%">
+      <div *ngIf="listTicket.length == 0">Sorry, there isn´t any ticket yet. Thanks.</div>
+      <div class="card" *ngFor="let schedule of listTicket | paginate: { itemsPerPage: pageSize, currentPage: p}" style="margin: 4px; width: 100%">
         <div class="card-header">
           <div style="display: flex; flex-direction: row; justify-content: space-between">
             <div>From: <strong>{{ schedule.startStops.stationStop.name}}</strong>  </div>
@@ -31,6 +31,7 @@
         </div>
       </div>
 
+      <pagination-controls class="my-pagination" (pageChange)="p = $event" *ngIf="listTicket.length != 0"></pagination-controls>
 
     </div>
 

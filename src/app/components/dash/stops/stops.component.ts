@@ -27,6 +27,9 @@ export class StopsComponent implements OnInit{
   modelView : boolean = false;
   newStop : boolean = false;
 
+  display = "none";
+  stopId : number = 0;
+
   constructor(private data : DataService) {
   }
   ngOnInit(): void {
@@ -68,15 +71,17 @@ export class StopsComponent implements OnInit{
     }
   }
 
-  delete(id : number){
+  delete(){
 
-    this.data.deleteStops(id).subscribe(result => {
+    this.data.deleteStops(this.stopId).subscribe(result => {
 
       alert(result.message);
       this.refreshList();
+      this.display = "none";
     }, error => {
 
       alert(error.error.message);
+
     });
   }
 
@@ -150,4 +155,12 @@ export class StopsComponent implements OnInit{
     this.newStop = false;
   }
 
+  openModal(stopId : number) {
+    this.display = "block";
+
+    this.stopId = stopId;
+  }
+  onCloseHandled() {
+    this.display = "none";
+  }
 }
