@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit{
     this.data.getStation().subscribe(result => {
 
       this.listStation = result;
+      this.listStation.sort((a,b) => a.name.localeCompare(b.name) )
     }, error => {
       alert(error.message());
     });
@@ -138,6 +139,9 @@ export class HomeComponent implements OnInit{
 
   search(){
 
+    const startTime = this.startDateTime + "T00:00";
+    const endTime = this.endDateTime + "T23:59"
+
     this.borderColorFrom = "";
     this.borderColorTo = "";
     this.borderColorTimeA = "";
@@ -178,7 +182,7 @@ export class HomeComponent implements OnInit{
       }
     });
 
-    this.data.searchTrain(this.idStationA, this.idStationB, this.startDateTime, this.endDateTime).subscribe(result => {
+    this.data.searchTrain(this.idStationA, this.idStationB, startTime, endTime).subscribe(result => {
 
       this.resultQuery = result;
 
@@ -209,7 +213,7 @@ export class HomeComponent implements OnInit{
         this.display = "none";
       }, error => {
 
-        alert(error.error);
+        alert(error.error.message);
       });
   }
 

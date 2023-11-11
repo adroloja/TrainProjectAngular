@@ -24,18 +24,18 @@
     </div>
   </nav>
 </div>
-  <div style="display: flex; justify-content: center; ">
+  <div style="display: flex; justify-content: center;width: 100%">
     <nav class="navbar navbar-light bg-light" style="width: 100%">
-      <div class="container-fluid">
+      <div class="container-fluid" style="margin-left: 2.5%; width: 100%">
         <form class="d-flex">
           <span style="margin-top: 12px; margin-right: 10px; font-size: large;">Time</span>
           <div>
-            <input type="datetime-local" id="startDateTime" [(ngModel)]="startDateTime" name="startDateTime" [ngModelOptions]="{standalone: true}" [style.border-color]="borderColorTimeA">
+            <input type="date" id="startDateTime" [(ngModel)]="startDateTime" name="startDateTime" [ngModelOptions]="{standalone: true}" [style.border-color]="borderColorTimeA">
           </div>
           <div style="width: 15%;"></div>
-          <span style="margin-top: 12px; margin-right: 10px; font-size: large;">Time</span>
-          <div>
-            <input type="datetime-local" id="endDateTime" [(ngModel)]="endDateTime" name="endDateTime" [ngModelOptions]="{standalone: true}"  [style.border-color]="borderColorTimeB">
+          <span style="margin-top: 12px; margin-left: 20.5%; font-size: large;">Time</span>
+          <div >
+            <input type="date" id="endDateTime" [(ngModel)]="endDateTime" name="endDateTime" [ngModelOptions]="{standalone: true}"  [style.border-color]="borderColorTimeB">
           </div>
           <button class="btn btn-primary" type="submit" (click)="search()" [disabled]="stationA == '' || stationB == '' || startDateTime == '' || endDateTime == ''">Search</button>
         </form>

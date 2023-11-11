@@ -134,14 +134,14 @@ export class DataService {
     return this.http.put<any>(GLOBAL.url + "updateStation", { id : id, name : name}, { headers });
   }
 
-  createStation(name : string){
+  createStation(name : string, lat : number, lng : number){
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.loginS.getToken()}`
     });
 
-    return this.http.post<any>(GLOBAL.url + "addStation", { name : name }, { headers });
+    return this.http.post<any>(GLOBAL.url + "addStation", { name : name, lat : lat, lng : lng }, { headers });
   }
 
   deleteStation(id : number){

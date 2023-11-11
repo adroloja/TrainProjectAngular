@@ -25,6 +25,7 @@ export class SearchTrainComponent  implements OnInit{
     this.data.getStation().subscribe(result => {
 
       this.listStation = result;
+      this.listStation.sort((a,b) => a.name.localeCompare(b.name))
     })
   }
 

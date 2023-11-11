@@ -33,24 +33,6 @@ export class LocationComponent implements OnInit{
       zoom: 9
     });
 
-    this.data.getStation().subscribe(result =>{
-
-      this.listStations = result;
-
-      this.listStations.forEach(n => {
-
-        new mapboxgl.Marker({
-          color: "#000000",
-          draggable: false
-        }).setLngLat([n.lng, n.lat])
-          .setPopup(new mapboxgl.Popup().setHTML(`<h5>${n.name}</h5>`))
-          .addTo(this.map);
-      });
-    }, error => {
-
-    });
-
-
     this.data.getAllPassengers().subscribe(result => {
 
       this.listPassenger = result.sort((a, b) => {
@@ -90,16 +72,6 @@ export class LocationComponent implements OnInit{
          zoom: 9
        });
      }
-
-      this.listStations.forEach(n => {
-
-        new mapboxgl.Marker({
-          color: "#000000",
-          draggable: false
-        }).setLngLat([n.lng, n.lat])
-          .setPopup(new mapboxgl.Popup().setHTML(`<h5>${n.name}</h5>`))
-          .addTo(this.map);
-      });
 
       this.listLocations = result;
       this.listLocations.forEach( point => {
