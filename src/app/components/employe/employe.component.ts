@@ -10,7 +10,7 @@ export class EmployeComponent {
   menu : string = "Dashboard";
 
   getSelectMenu(menu : string){
-    console.log(menu);
+    //console.log(menu);
     this.menu = menu;
   }
 }

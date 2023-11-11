@@ -19,7 +19,7 @@ export class LocationService {
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
 
-        console.log(lat, long);
+        //console.log(lat, long);
 
         this.sendLocationToServer(lat, long).subscribe(result => {
 
