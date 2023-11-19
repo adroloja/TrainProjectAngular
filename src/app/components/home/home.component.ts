@@ -60,6 +60,11 @@ export class HomeComponent implements OnInit{
               public loginS : LoginService) { }
   ngOnInit(): void {
 
+    const employe = localStorage.getItem("role");
+    if(employe == "employe"){
+      this.route.navigate(["/employe"]);
+    }
+
     this.data.getStation().subscribe(result => {
 
       this.listStation = result;
@@ -125,6 +130,9 @@ export class HomeComponent implements OnInit{
       alert("Sing up successed");
       this.loginS.openModelReg = false;
       this.loginS.openModal = true;
+    }, error => {
+
+      alert(error.error);
     });
   }
   setRegistredMode(action : boolean){
