@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
 
     const employe = localStorage.getItem("role");
+    console.log(employe);
     if(employe == "employe"){
       this.route.navigate(["/employe"]);
     }
