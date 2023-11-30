@@ -102,13 +102,7 @@ export class StopsComponent implements OnInit{
 
   addStation(){
 
-    if(this.trainNumber != 0 && this.scheduleId == 0 && this.stationId != 0 && this.timeStops != ""){
-
-      alert("This train doesn´t have any assigned schedule. You must create a new schedule for this train. Thanks");
-      return;
-    }
-
-    if(this.trainNumber == 0 || this.scheduleId == 0 || this.stationId == 0 || this.timeStops == ""){
+    if(this.trainNumber == 0 || this.stationId == 0 || this.timeStops == ""){
 
       alert("Please, Complete all fields. Thanks.");
     }

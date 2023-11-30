@@ -39,10 +39,10 @@ export class StationComponent implements OnInit{
   }
 
   create(){
-
+    console.log(this.lat, this.lng)
     this.data.createStation(this.name, this.lat, this.lng).subscribe(result => {
 
-      //this.refreshList();
+      this.refreshList();
       this.showStationOnMap();
       this.modelView = false;
 
