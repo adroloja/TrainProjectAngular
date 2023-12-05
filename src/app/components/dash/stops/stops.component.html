@@ -8,12 +8,7 @@
       <option *ngFor="let item of listTrain" [value]="item.id"> {{ item.number }}</option>
     </select>
   </div>
- <!--
-   <div>
-    <h6>Select Schedule:</h6>
-    <h6 class="text-center">{{ this.scheduleId }}</h6>
-  </div>
-  -->
+
   <div>
     <h6>Select Station:</h6>
     <select [(ngModel)]="stationId" [ngModelOptions]="{standalone: true}">

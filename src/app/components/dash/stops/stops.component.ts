@@ -108,13 +108,12 @@ export class StopsComponent implements OnInit{
     }
     const time = this.timeStops.replaceAll("-", "/").replace("T", " ");
 
-    this.data.createStops(this.trainNumber, this.scheduleId, this.stationId, time).subscribe(result => {
+    this.data.createStops(this.trainNumber, 1, this.stationId, time).subscribe(result => {
 
       this.refreshList();
       this.newStop = false;
 
     });
-
   }
 
   selectSchedule(){
