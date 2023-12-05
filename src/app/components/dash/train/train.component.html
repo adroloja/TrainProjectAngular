@@ -41,10 +41,10 @@
       <input type="text" placeholder="Train seats" [(ngModel)]="seats" [ngModelOptions]="{standalone: true}" >
     </div>
     <div class="centrado" *ngIf="trainNumber != 0">
-      <button  type="button" class="btn btn-primary botonLogin" (click)="update()">Update</button>
+      <button  type="button" class="btn btn-primary botonLogin" (click)="update()">Save</button>
     </div>
     <div class="centrado" *ngIf="trainNumber == 0">
-      <button  type="button" class="btn btn-primary botonLogin" (click)="update()">Create</button>
+      <button  type="button" class="btn btn-primary botonLogin" (click)="update()">Save</button>
     </div>
     <div class="centrado">
       <a (click)="this.modelView = false" style="cursor: pointer">Close</a>

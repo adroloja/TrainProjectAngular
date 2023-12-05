@@ -57,7 +57,7 @@
     <tr>
       <th scope="col" style="width: 120px" >Id</th>
       <th scope="col" style="width: 120px">Train Number</th>
-      <th scope="col" style="width: 120px">Schedule</th>
+
       <th scope="col">Station</th>
       <th scope="col">Time</th>
       <th scope="col">Options</th>
@@ -69,7 +69,6 @@
     <tr *ngFor="let station of listStops | paginate: { itemsPerPage: pageSize, currentPage: p}">
       <td>{{ station.id }}</td>
       <td>{{ station.trainStops.number }}</td>
-      <td>{{ station.schedule.id }}</td>
       <td>{{ station.stationStop.name }}</td>
       <td>{{ station.time }}</td>
       <td>

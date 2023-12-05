@@ -49,10 +49,10 @@
       <input type="text" placeholder="longitude" [(ngModel)]="lng" [ngModelOptions]="{standalone: true}" >
     </div>
     <div class="centrado" *ngIf="updateMode">
-      <button  type="button" class="btn btn-primary botonLogin" style="width: 150px;  margin: 4px;" (click)="update()">Update</button>
+      <button  type="button" class="btn btn-primary botonLogin" style="width: 150px;  margin: 4px;" (click)="update()">Save</button>
     </div>
     <div class="centrado" *ngIf="!updateMode">
-      <button  type="button" class="btn btn-primary botonLogin" style="width: 150px;  margin: 4px;" (click)="create()">Create</button>
+      <button  type="button" class="btn btn-primary botonLogin" style="width: 150px;  margin: 4px;" (click)="create()">Save</button>
     </div>
     <div class="centrado">
       <a (click)="this.modelView = false" style="cursor: pointer">Close</a>
